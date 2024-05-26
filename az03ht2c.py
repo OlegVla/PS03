@@ -28,12 +28,14 @@ def fetch_divan_data(url):
 
         # Здесь мы предполагаем, что на странице divan.ru есть элементы с классом 'product-name' для
         # названия и 'price' для цены
-        products = driver.find_elements(By.CSS_SELECTOR, 'div.Ud0k')
+        products = driver.find_elements(By.CLASS_NAME, "Pk6w8")
 
         for product in products:
             try:
-                name = product.find_element(By.CSS_SELECTOR, 'div.lsooF').text
-                price = product.find_element(By.CSS_SELECTOR, 'div.pY3d2').text
+                name = product.find_element(By.CSS_SELECTOR, 'div.c9h0M').text
+                print(name)
+                price = product.find_element(By.CSS_SELECTOR, 'div.lsooF').text
+
                 data.append([name, price])
             except Exception as e:
                 print(f"Error parsing product: {e}")
@@ -55,6 +57,7 @@ def save_to_csv(data,filename):
 def main():
     url = 'https://divan.ru/category/divany-i-kresla'  # Замените на нужный URL
     data = fetch_divan_data(url)
+    print(data)
     save_to_csv(data,'divans.csv')
     print("Data has been saved to divans.csv")
 

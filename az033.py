@@ -18,11 +18,11 @@ import time
 import csv
 
 # Если используем Google Chrome, то пишем driver = webdriver.Chrome()
-driver = webdriver.Firefox()
-driver = webdriver.Firefox()
+#driver = webdriver.Firefox()
+driver = webdriver.Chrome()
 
 # URL страницы
-url = 'https://www.cian.ru/snyat-kvartiru-1-komn-ili-2-komn/'
+url = 'https://www.divan.ru/category/divany-i-kresla'
 
 # Открытие страницы
 driver.get(url)
@@ -31,7 +31,7 @@ driver.get(url)
 time.sleep(5)
 
 # Парсинг цен
-prices = driver.find_elements(By.XPATH, "//span[@data-mark='MainPrice']/span")
+prices = driver.find_elements(By.XPATH, "span.ui-Ld-ZU.KIkOH")
 
 # Открытие CSV файла для записи
 with open('prices.csv', mode='w', newline='', encoding='utf-8') as file:
